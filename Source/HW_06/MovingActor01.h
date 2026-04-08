@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Test.generated.h"
+#include "MovingActor01.generated.h"
 
 UCLASS()
-class HW_06_API ATest : public AActor
+class HW_06_API AMovingActor01 : public AActor
 {
 	GENERATED_BODY()
-
+	
 public:	
 	// Sets default values for this actor's properties
-	ATest();
+	AMovingActor01();
 
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* SceneRoot;
@@ -22,7 +22,17 @@ public:
 	UStaticMeshComponent* StaticMeshComp;
 
 	UPROPERTY(VisibleAnywhere)
-	float f_RotationSpeed_roll;
+	float f_Speed_x;
+
+	UPROPERTY(VisibleAnywhere)
+	float MaxRange;
+
+
+private:
+	FVector StartLocation;
+	float f_Direction;
+	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -31,9 +41,5 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void MovingRotator(float DeltaTime);
-
-private:
-	// - pitch (y축)  , yaw(z축)  ,roll (x축)
-	
+	void MovingLocation(float DeltaTime);
 };
