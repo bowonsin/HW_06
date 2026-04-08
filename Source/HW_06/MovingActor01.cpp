@@ -29,9 +29,6 @@ AMovingActor01::AMovingActor01()
 		StaticMeshComp->SetMaterial(0, MaterialAsset.Object);
 	}
 
-
-	
-
 }
 
 // Called when the game starts or when spawned
@@ -41,10 +38,11 @@ void AMovingActor01::BeginPlay()
 	StartLocation = GetActorLocation();
 
 	// 속도 
-	f_DirectioanSpeed_x = 100.0f;
+	f_Speed_x = 100.0f;
 
 	// 최대 거리
 	MaxRange = 400.0f;
+	f_Direction = 1;
 }
 
 // Called every frame
@@ -74,5 +72,4 @@ void AMovingActor01::MovingLocation(float DeltaTime) // 이동 관련
 			f_Direction *= -1;
 		}
 	}
-
 }

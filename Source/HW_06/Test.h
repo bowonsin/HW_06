@@ -32,8 +32,11 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void MovingRotator(float DeltaTime);
+	void MovingLocation();
 
 private:
+
+	FTimerHandle TimerHandle;
 	// - pitch (y축)  , yaw(z축)  ,roll (x축)
 	
 };

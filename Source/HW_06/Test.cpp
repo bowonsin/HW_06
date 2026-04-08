@@ -37,7 +37,17 @@ ATest::ATest()
 void ATest::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	GetWorld()->GetTimerManager().SetTimer(
+		TimerHandle,
+		this,
+		&ATest::MovingLocation,
+		1.0f,
+		true
+	);
+}
+void ATest::MovingLocation()
+{
+	AddActorLocalOffset(FVector(5.0f, 0, 0));
 }
 
 // Called every frame
@@ -45,6 +55,9 @@ void ATest::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	MovingRotator(DeltaTime);
+
+	UE_LOG(LogTemp, Warning, TEXT("Tick!"));
+
 }
 
 
