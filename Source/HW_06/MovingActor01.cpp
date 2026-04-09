@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-
+#include "Components/StaticMeshComponent.h"
+#include "Components/SceneComponent.h"
 #include "MovingActor01.h"
 
 // Sets default values
@@ -28,7 +28,6 @@ AMovingActor01::AMovingActor01()
 		// 첫번째 Materials를 설정하겠다 해서 첫번쨰 변수는 순서를 꼭 넣어야 적용이 된다
 		StaticMeshComp->SetMaterial(0, MaterialAsset.Object);
 	}
-
 }
 
 // Called when the game starts or when spawned
@@ -38,12 +37,13 @@ void AMovingActor01::BeginPlay()
 	StartLocation = GetActorLocation();
 
 	// 속도 
-	f_Speed_x = 100.0f;
+	f_Speed_x = FMath::RandRange(150.0f,500.0f);
 
 	// 최대 거리
-	MaxRange = 400.0f;
+	MaxRange = FMath::RandRange(200.0f, 500.0f);
 	f_Direction = 1;
 }
+
 
 // Called every frame
 void AMovingActor01::Tick(float DeltaTime)
@@ -57,7 +57,6 @@ void AMovingActor01::Tick(float DeltaTime)
 
 void AMovingActor01::MovingLocation(float DeltaTime) // 이동 관련 
 {
-
 	if (!FMath::IsNearlyZero(f_Speed_x))
 	{
 		// 이동

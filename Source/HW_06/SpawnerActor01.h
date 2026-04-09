@@ -4,43 +4,30 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "MovingActor01.generated.h"
+#include "SpawnerActor01.generated.h"
 
 UCLASS()
-class HW_06_API AMovingActor01 : public AActor
+class HW_06_API ASpawnerActor01 : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AMovingActor01();
+	ASpawnerActor01();
 
-	UPROPERTY(VisibleAnywhere)
-	class USceneComponent* SceneRoot;
 
-	UPROPERTY(VisibleAnywhere)
-	class UStaticMeshComponent* StaticMeshComp;
-	
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Item|Components")
-	float f_Speed_x;
+	TSubclassOf<AActor> TestClass;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Components")
-	float MaxRange;
-
-
-private:
-	FVector StartLocation;
-	float f_Direction;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Item|Components")
+	TArray<AActor*> ActorSpawnLocation;
 	
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void MovingLocation(float DeltaTime);
 };
